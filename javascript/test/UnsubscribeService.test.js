@@ -24,12 +24,12 @@ describe('UnsubscribeService', () => {
       jest.spyOn(StatementApi, 'getCharges').mockImplementation(() => statementCharges);
     });
 
-    test('sums the charges that occur more than once', () => {
+    test('Display reccuring charges and their amounts', () => {
       createCharge(sampleName, "1/1/18", sampleAmount);
       createCharge(sampleName, "1/2/18", sampleAmount);
 
       const recurringCharges = subject.displayRecurringCharges();
-      expect(recurringCharges[sampleName]).toBe(2);
+      expect(recurringCharges[sampleName]).toBe(sampleAmount);
     });
 
     test('does not include charges that only occur once', () => {
